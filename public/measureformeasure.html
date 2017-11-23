@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+		<link rel="stylesheet" href="/public/generics.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<script src='https://unpkg.com/vue'></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js" charset="utf-8"></script>
+		<script src="/lib/sortable.min.js" charset="utf-8"></script>
+		<script src="/lib/vuedraggable.min.js" charset="utf-8"></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+
+		<title>m4m</title>
+	</head>
+	<body>
+		<div id="app">
+			<h1 class="text-center underline">{{new Date().getFullYear()}}</h1>
+			<h3 class="text-center">A year in numbers that matter</h3>
+			<div class="progress w-50 mx-auto mt-2">
+				<div class="progress-bar" v-bind:style="yearProgress">{{yearProgress.width}}</div>
+			</div>
+			<br>
+				<draggable v-model="itemArray" @start="closeMenu" @end="updateDatabaseOrder" :options="{animation: 60, ghostClass: 'text-white'}">
+
+					<list-item
+						is="list-item"
+						v-for="item in items"
+						:name="item.name"
+						:count="item.count"
+						:goal="item.goal"
+						:updategoal="updategoal"
+						:key="item.index"
+						:index="item.index"
+						:reduce="reduce"
+						:increment="increment"
+						:deleteitem="deleteitem"
+						:whichmenu="whichmenu"
+						:showthismenu="showthismenu"
+					>
+					</list-item>
+
+				</draggable>
+
+			<div class="input-group w-50 mx-auto mt-3">
+				<input @keyup.enter="addAnItem" type="text" v-model="newItem" class="form-control" placeholder="Enter a new item" aria-label="Search for...">
+				<span class="input-group-btn">
+					<button @click="addAnItem" class="btn btn-secondary pointer" type="button">Add an item</button>
+				</span>
+			</div>
+		</div>
+
+		<script src="/lib/vm.js" charset="utf-8"></script>
+	</body>
+</html>
