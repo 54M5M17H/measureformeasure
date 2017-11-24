@@ -21,15 +21,15 @@ app.use(session({
   saveUninitialized: true
 }));
 
-// app.use(function(req, res, next){
-// 	if(!req.session.auth){
-// 		if(req.path == "/measure") res.redirect("/login");
-// 		else next();
-// 	} else {
-// 		if(req.path == "/login") res.redirect("/measure");
-// 		else next();
-// 	}
-// });
+app.use(function(req, res, next){
+	if(!req.session.auth){
+		if(req.path == "/measure") res.redirect("/login");
+		else next();
+	} else {
+		if(req.path == "/login") res.redirect("/measure");
+		else next();
+	}
+});
 
 app.get("/", function(req, res){
 	res.redirect("/measure");
@@ -57,12 +57,15 @@ var addItem = require("./models/addItem.js");
 var updateItem = require("./models/updateItem.js");
 var deleteItem = require("./models/deleteItem.js");
 var getItems = require("./models/getItems.js");
+var updateName = require("./models/updateName.js");
 
 app.route("/api")
 	.put(addItem)
 	.post(updateItem)
 	.delete(deleteItem)
 	.get(getItems)
+
+app.post("/apibyid", updateName);
 
 var server = app.listen(process.env.PORT || 3000);
 
