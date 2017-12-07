@@ -21,7 +21,9 @@
 			<div class="progress w-50 mx-auto mt-2">
 				<div class="progress-bar" v-bind:style="yearProgress">{{yearProgress.width}}</div>
 			</div>
-			<br>
+			<div class="text-center my-3 text-muted font-italic">
+				<h5 class="font-weight-light">What gets measured gets managed.</h5>
+			</div>
 				<draggable v-model="itemArray" @start="closeMenu" @end="updateDatabaseOrder" :options="{animation: 60, ghostClass: 'text-white'}">
 
 					<list-item
