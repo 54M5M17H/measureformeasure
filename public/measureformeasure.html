@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 		<link rel="stylesheet" href="/public/generics.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,8 +25,8 @@
 			<div class="text-center my-3 text-muted font-italic">
 				<h5 class="font-weight-light">What gets measured gets managed.</h5>
 			</div>
-				<draggable v-model="itemArray" @start="closeMenu" @end="updateDatabaseOrder" :options="{animation: 60, ghostClass: 'text-white'}">
-
+				<!-- <draggable v-model="itemArray" @start="closeMenu" @end="updateDatabaseOrder" :options="{animation: 60, ghostClass: 'text-white'}"> -->
+					<!-- removed drag due to issues - see vm.js notes -->
 					<list-item
 						is="list-item"
 						v-for="item in items"
@@ -44,9 +45,9 @@
 					>
 					</list-item>
 
-				</draggable>
+				<!-- </draggable> -->
 
-			<div class="input-group w-50 mx-auto mt-3">
+			<div class="input-group w-100 mx-auto mt-3">
 				<input @keyup.enter="addAnItem" type="text" v-model="newItem" class="form-control" placeholder="Enter a new item" aria-label="Search for...">
 				<span class="input-group-btn">
 					<button @click="addAnItem" class="btn btn-secondary pointer" type="button">Add an item</button>
